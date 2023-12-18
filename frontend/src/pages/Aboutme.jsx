@@ -4,6 +4,6 @@ function Aboutme(){
 			About Me
 		</div>
 	);
-};
+}
 
 export default Aboutme;
