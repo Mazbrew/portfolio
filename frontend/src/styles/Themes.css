@@ -1,9 +1,59 @@
 .dark-mode{
 	background-color: #191919;
 	color: #cccccc;
+	animation-name: light-to-dark;
+	animation-duration: 0.3s;
 }
 
 .light-mode{
 	background-color: #e6e6e6;
 	color: #333333;
+	animation-name: dark-to-light;
+	animation-duration: 0.5s;
+}
+
+@keyframes light-to-dark{
+	0%{
+		background-color: #e6e6e6;
+		color: #333333;
+	}
+	50%{
+		background-color: #333333;
+		color: #333333;
+	}
+	51%{
+		background-color: #191919;
+		color: #333333;
+	}
+	75%{
+		background-color: #191919;
+		color: #191919;
+	}
+	100%{
+		background-color: #191919;
+		color: #cccccc;
+	}
+}
+
+@keyframes dark-to-light{
+	0%{
+		background-color: #191919;
+		color: #cccccc;
+	}
+	50%{
+		background-color: #191919;
+		color: #191919;
+	}
+	51%{
+		background-color: #e6e6e6;
+		color: #333333;
+	}
+	75%{
+		background-color: #191919;
+		color: #333333;
+	}
+	100%{
+		background-color: #e6e6e6;
+		color: #333333;
+	}
 }

@@ -22,13 +22,14 @@
 
 #theme-selector-container{
 	padding: 6vh 0 6vh 0;
+	box-sizing: border-box;
 	width: 5vh;
 	height: 100vh;
 	position: fixed;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	align-items: bottom;
+	align-items: center;
 	top: 0;
 	left: 0;
 	z-index: 1;

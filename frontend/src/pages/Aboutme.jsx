@@ -1,4 +1,4 @@
-function Aboutme(){
+function AboutMe(){
 	return(
 		<div>
 			About Me
@@ -6,4 +6,4 @@ function Aboutme(){
 	);
 }
 
-export default Aboutme;
+export default AboutMe;
