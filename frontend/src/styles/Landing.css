@@ -1,7 +1,12 @@
-#landing-container{
-	width: 100vw;
-	height: 100vh;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+#landing-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#splash-art {
+    font-family: monospace;
+    font-size: 1vw;
 }

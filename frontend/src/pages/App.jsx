@@ -1,42 +1,53 @@
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from "react";
 
-import LightSwitch from '../components/LightSwitch.jsx';
+import LightSwitch from "../components/LightSwitch.jsx";
+import FancyDisplay from "../components/FancyDisplay.jsx";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import '../styles/App.css';
-import '../styles/Themes.css';
+import "../styles/App.css";
+import "../styles/Themes.css";
 
-function App(){
-	const [theme, setTheme] = useState("light-mode");
+import Landing from "./Landing.jsx";
+import Error from "./Error.jsx";
 
-	const setLight = () => {
-		setTheme("light-mode");
-	}
+function App() {
+    const [theme, setTheme] = useState("light-mode");
 
-	const setDark = () => {
-		setTheme("dark-mode");	
-	}
+    const setLight = () => {
+        setTheme("light-mode");
+    };
 
-	let themeSwap = null;
+    const setDark = () => {
+        setTheme("dark-mode");
+    };
 
-	if(theme == "light-mode"){
-		themeSwap = setDark;	
-	}else if(theme == "dark-mode"){
-		themeSwap = setLight;
-	}
+    let themeSwap = null;
 
-	return(
-		<div>
-			<div id = "app-container" className = {theme}>
-				<div id = "theme-selector-container">
-					<LightSwitch onClick = {themeSwap}/>	
-				</div>
+    if (theme == "light-mode") {
+        themeSwap = setDark;
+    } else if (theme == "dark-mode") {
+        themeSwap = setLight;
+    }
 
-				<div id = "page-container">
-					
-				</div>
-			</div>
-		</div>
-	);
+    return (
+        <div>
+            <div id="app-container" className={theme}>
+                <div id="theme-selector-container">
+                    <LightSwitch onClick={themeSwap} />
+                </div>
+
+                <div id="page-container">
+                    <FancyDisplay />
+                    <BrowserRouter>
+                        <Routes>
+                            <Route path="/" element={<Landing />}></Route>
+                            <Route path="*" element={<Error />}></Route>
+                        </Routes>
+                    </BrowserRouter>
+                </div>
+            </div>
+        </div>
+    );
 }
 
 export default App;
