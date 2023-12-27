@@ -37,13 +37,13 @@ function App() {
                 </div>
 
                 <div id="page-container">
-                    <FancyDisplay />
                     <BrowserRouter>
                         <Routes>
                             <Route path="/" element={<Landing />}></Route>
                             <Route path="*" element={<Error />}></Route>
                         </Routes>
                     </BrowserRouter>
+                    <FancyDisplay />
                 </div>
             </div>
         </div>
