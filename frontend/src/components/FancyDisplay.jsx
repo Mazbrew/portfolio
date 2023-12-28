@@ -1,79 +1,100 @@
-import { useCallback, useEffect, useState } from "react";
-import Particles, { initParticlesEngine } from "@tsparticles/react";
-import { loadSlim } from "@tsparticles/slim";
+import { useLayoutEffect, useEffect, useRef, useState } from "react";
+import { ReactP5Wrapper } from "@p5-wrapper/react";
 
 import "../styles/FancyDisplay.css";
 
+function sketch(p5) {
+    let width = 0;
+    let height = 0;
+    let color = "";
+    let background = "";
+
+    let i = 0;
+
+    p5.updateWithProps = (props) => {
+        width = props.width;
+        height = props.height;
+        color = props.color;
+        background = "pink";
+
+        console.log(width);
+    };
+
+    p5.setup = () => {
+        const canvas = p5.createCanvas(0, 0, p5.WEBGL);
+    };
+
+    p5.draw = () => {
+        p5.resizeCanvas(width, height, true);
+        p5.background(background);
+        p5.stroke(color);
+        p5.strokeWeight(5);
+        p5.line(0, i, 100, i + 100);
+        i = i + 1;
+
+        if (i >= height / 2) {
+            i = (height / 2) * -1;
+        }
+    };
+}
+
 function FancyDisplay() {
-    const [init, setInit] = useState(false);
-    // this should be run only once per application lifetime
-    useEffect(() => {
-        initParticlesEngine(async (engine) => {
-            await loadSlim(engine);
-        }).then(() => {
-            setInit(true);
-        });
+    const ref = useRef(null);
+
+    const [numbers, setNumbers] = useState([]);
+
+    const [width, setWidth] = useState(0);
+    const [height, setHeight] = useState(0);
+
+    const [color, setColor] = useState("#333333");
+    const [background, setBackground] = useState("#e6e6e6");
+
+    useLayoutEffect(() => {
+        setWidth(ref.current.scrollWidth);
+        setHeight(ref.current.scrollHeight);
+    }, [numbers]);
+
+    useLayoutEffect(() => {
+        setColor(window.getComputedStyle(ref.current).color);
+        setBackground(window.getComputedStyle(ref.current).backgroundColor);
     }, []);
 
-    const particlesLoaded = (container) => {};
+    useEffect(() => {
+        function handleWindowResize() {
+            setWidth(ref.current.scrollWidth);
+            setHeight(ref.current.scrollHeight);
+        }
+
+        window.addEventListener("resize", handleWindowResize);
+
+        return () => {
+            window.removeEventListener("resize", handleWindowResize);
+        };
+    }, []);
+
+    useEffect(() => {
+        function handleClick() {
+            setColor(window.getComputedStyle(ref.current).color);
+            setBackground(window.getComputedStyle(ref.current).backgroundColor);
+        }
+
+        window.addEventListener("click", handleClick);
+
+        return () => {
+            window.removeEventListener("click", handleClick);
+        };
+    }, []);
 
     return (
         <div id="fancy-display-container">
-            <div id="fancy-display">
-                <Particles
-                    id="tsparticles"
-                    particlesLoaded={particlesLoaded}
-                    options={{
-                        fpsLimit: 120,
-                        interactivity: {
-                            events: {
-                                resize: true,
-                            },
-                        },
-                        fullscreen: {
-                            enable: false,
-                            zIndex: 0,
-                        },
-                        style: {
-                            position: "absolute",
-                            top: "5vh",
-                            left: "5vh",
-                            width: "calc(100vw - 10vh)",
-                            height: "90vh",
-                        },
-                        particles: {
-                            color: {
-                                value: "#008000",
-                            },
-                            move: {
-                                direction: "none",
-                                enable: true,
-                                outModes: {
-                                    default: "bounce",
-                                },
-                                random: false,
-                                speed: 5,
-                                straight: false,
-                            },
-                            number: {
-                                density: {
-                                    enable: true,
-                                    area: 800,
-                                },
-                                value: 500,
-                            },
-                            opacity: {
-                                value: 0.5,
-                            },
-                            shape: {
-                                type: "square",
-                            },
-                            size: {
-                                value: { min: 3, max: 3 },
-                            },
-                        },
-                        detectRetina: true,
-                    }}
+            <div id="fancy-display" ref={ref}>
+                <ReactP5Wrapper
+                    id="p5"
+                    sketch={sketch}
+                    width={width}
+                    height={height}
+                    color={color}
+                    background={background}
                 />
             </div>
         </div>
