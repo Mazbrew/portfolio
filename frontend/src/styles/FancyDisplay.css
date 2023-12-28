@@ -16,9 +16,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    box-sizing: border-box;
 }
 
-#p5 {
-    display: inline;
+.react-p5-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

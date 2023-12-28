@@ -43,7 +43,7 @@ function App() {
                             <Route path="*" element={<Error />}></Route>
                         </Routes>
                     </BrowserRouter>
-                    <FancyDisplay />
+                    <FancyDisplay theme={theme} />
                 </div>
             </div>
         </div>

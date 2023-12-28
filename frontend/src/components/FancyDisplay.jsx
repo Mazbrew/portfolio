@@ -6,6 +6,7 @@ import "../styles/FancyDisplay.css";
 function sketch(p5) {
     let width = 0;
     let height = 0;
+    let theme = "";
     let color = "";
     let background = "";
 
@@ -14,10 +15,13 @@ function sketch(p5) {
     p5.updateWithProps = (props) => {
         width = props.width;
         height = props.height;
-        color = props.color;
-        background = "pink";
+        theme = props.theme;
 
-        console.log(width);
+        if (theme == "light-mode") {
+            background = "#e6e6e6";
+        } else if (theme == "dark-mode") {
+            background = "#191919";
+        }
     };
 
     p5.setup = () => {
@@ -38,7 +42,7 @@ function sketch(p5) {
     };
 }
 
-function FancyDisplay() {
+function FancyDisplay(props) {
     const ref = useRef(null);
 
     const [numbers, setNumbers] = useState([]);
@@ -46,18 +50,10 @@ function FancyDisplay() {
     const [width, setWidth] = useState(0);
     const [height, setHeight] = useState(0);
 
-    const [color, setColor] = useState("#333333");
-    const [background, setBackground] = useState("#e6e6e6");
-
     useLayoutEffect(() => {
         setWidth(ref.current.scrollWidth);
         setHeight(ref.current.scrollHeight);
     }, [numbers]);
-
-    useLayoutEffect(() => {
-        setColor(window.getComputedStyle(ref.current).color);
-        setBackground(window.getComputedStyle(ref.current).backgroundColor);
-    }, []);
 
     useEffect(() => {
         function handleWindowResize() {
@@ -72,19 +68,6 @@ function FancyDisplay() {
         };
     }, []);
 
-    useEffect(() => {
-        function handleClick() {
-            setColor(window.getComputedStyle(ref.current).color);
-            setBackground(window.getComputedStyle(ref.current).backgroundColor);
-        }
-
-        window.addEventListener("click", handleClick);
-
-        return () => {
-            window.removeEventListener("click", handleClick);
-        };
-    }, []);
-
     return (
         <div id="fancy-display-container">
             <div id="fancy-display" ref={ref}>
@@ -93,8 +76,7 @@ function FancyDisplay() {
                     sketch={sketch}
                     width={width}
                     height={height}
-                    color={color}
-                    background={background}
+                    theme={props.theme}
                 />
             </div>
         </div>
