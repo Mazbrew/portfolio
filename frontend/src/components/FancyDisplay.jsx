@@ -10,12 +10,11 @@ function sketch(p5) {
     let color = "";
     let background = "";
 
-    let dim = 10;
-    let scale = 150;
+    let dim = 16;
+    let size = 200;
     let points = [];
 
-    let rotation = 0.0;
-    let rotation_speed = 0.5;
+    let scale = 5;
 
     p5.updateWithProps = (props) => {
         width = props.width;
@@ -24,10 +23,10 @@ function sketch(p5) {
 
         if (theme == "light-mode") {
             background = "#e6e6e6";
-            color = p5.color("rgba(0,0,0,0.15)");
+            color = p5.color("rgba(0,0,0,0.1)");
         } else if (theme == "dark-mode") {
             background = "#191919";
-            color = p5.color("rgba(255,255,255,0.15)");
+            color = p5.color("rgba(255,255,255,0.1)");
         }
     };
 
@@ -49,9 +48,9 @@ function sketch(p5) {
                         p5.append(
                             points,
                             new p5.constructor.Vector(
-                                p5.map(i, 0, dim, -scale, scale),
-                                p5.map(j, 0, dim, -scale, scale),
-                                p5.map(k, 0, dim, -scale, scale)
+                                p5.map(i, 0, dim - 1, -size, size),
+                                p5.map(j, 0, dim - 1, -size, size),
+                                p5.map(k, 0, dim - 1, -size, size)
                             )
                         );
                     }
@@ -63,17 +62,29 @@ function sketch(p5) {
     p5.draw = () => {
         p5.resizeCanvas(width, height, true);
         p5.background(background);
-        p5.stroke(color);
-        p5.strokeWeight(5);
 
-        p5.rotateX(rotation);
-        p5.rotateY(rotation);
+        p5.stroke(color);
+        p5.strokeWeight(4.5);
+
+        p5.rotateX(45);
+        p5.rotateY(p5.frameCount * 0.5);
+        p5.rotateZ(45);
+        console.log(points[1]);
 
         for (let i = 0; i < points.length; i++) {
-            p5.point(points[i]);
+            p5.point(
+                points[i].x * scale,
+                points[i].y * scale,
+                points[i].z * scale
+            );
         }
 
-        rotation = (rotation + rotation_speed) % 360;
+        p5.fill(0, 0);
+        p5.box(size);
+
+        if (scale > 1.0) {
+            scale -= 0.01;
+        }
     };
 }
 

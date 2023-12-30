@@ -11,7 +11,7 @@ import Landing from "./Landing.jsx";
 import Error from "./Error.jsx";
 
 function App() {
-    const [theme, setTheme] = useState("light-mode");
+    const [theme, setTheme] = useState("dark-mode");
 
     const setLight = () => {
         setTheme("light-mode");

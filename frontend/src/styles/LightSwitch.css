@@ -18,6 +18,10 @@
     -moz-box-shadow: 200px 200px 400px 200px inset;
 }
 
+.symbol {
+    font-family: monospace;
+}
+
 .on {
     top: 0%;
     animation-name: on;

@@ -3,7 +3,7 @@ import { useState } from "react";
 import "../styles/LightSwitch.css";
 
 function LightSwitch(props) {
-    const [onOff, setOnOff] = useState("on");
+    const [onOff, setOnOff] = useState("off");
 
     const turnOnOff = () => {
         if (onOff == "on") {
@@ -14,14 +14,18 @@ function LightSwitch(props) {
     };
 
     return (
-        <div
-            id="lightswitch-container"
-            onClick={() => {
-                props.onClick();
-                turnOnOff();
-            }}
-        >
-            <div id="lightswitch" className={onOff}></div>
+        <div className="symbol">
+            <div className="symbol">1</div>
+            <div
+                id="lightswitch-container"
+                onClick={() => {
+                    props.onClick();
+                    turnOnOff();
+                }}
+            >
+                <div id="lightswitch" className={onOff}></div>
+            </div>
+            <div className="symbol">0</div>
         </div>
     );
 }
