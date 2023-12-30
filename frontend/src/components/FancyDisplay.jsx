@@ -10,7 +10,12 @@ function sketch(p5) {
     let color = "";
     let background = "";
 
-    let i = 0;
+    let dim = 10;
+    let scale = 150;
+    let points = [];
+
+    let rotation = 0.0;
+    let rotation_speed = 0.5;
 
     p5.updateWithProps = (props) => {
         width = props.width;
@@ -19,13 +24,40 @@ function sketch(p5) {
 
         if (theme == "light-mode") {
             background = "#e6e6e6";
+            color = p5.color("rgba(0,0,0,0.15)");
         } else if (theme == "dark-mode") {
             background = "#191919";
+            color = p5.color("rgba(255,255,255,0.15)");
         }
     };
 
     p5.setup = () => {
-        const canvas = p5.createCanvas(0, 0, p5.WEBGL);
+        p5.createCanvas(0, 0, p5.WEBGL);
+        p5.angleMode(p5.DEGREES);
+
+        for (let i = 0; i < dim; i++) {
+            for (let j = 0; j < dim; j++) {
+                for (let k = 0; k < dim; k++) {
+                    if (
+                        i == 0 ||
+                        i == dim - 1 ||
+                        j == 0 ||
+                        j == dim - 1 ||
+                        k == 0 ||
+                        k == dim - 1
+                    ) {
+                        p5.append(
+                            points,
+                            new p5.constructor.Vector(
+                                p5.map(i, 0, dim, -scale, scale),
+                                p5.map(j, 0, dim, -scale, scale),
+                                p5.map(k, 0, dim, -scale, scale)
+                            )
+                        );
+                    }
+                }
+            }
+        }
     };
 
     p5.draw = () => {
@@ -33,12 +65,15 @@ function sketch(p5) {
         p5.background(background);
         p5.stroke(color);
         p5.strokeWeight(5);
-        p5.line(0, i, 100, i + 100);
-        i = i + 1;
 
-        if (i >= height / 2) {
-            i = (height / 2) * -1;
+        p5.rotateX(rotation);
+        p5.rotateY(rotation);
+
+        for (let i = 0; i < points.length; i++) {
+            p5.point(points[i]);
         }
+
+        rotation = (rotation + rotation_speed) % 360;
     };
 }
 
