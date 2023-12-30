@@ -1,14 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import LightSwitch from "../components/LightSwitch.jsx";
 import FancyDisplay from "../components/FancyDisplay.jsx";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
 import "../styles/App.css";
 import "../styles/Themes.css";
 
 import Landing from "./Landing.jsx";
 import Error from "./Error.jsx";
+
+import Navbar from "../components/Navbar.jsx";
 
 function App() {
     const [theme, setTheme] = useState("dark-mode");
@@ -36,15 +38,17 @@ function App() {
                     <LightSwitch onClick={themeSwap} />
                 </div>
 
-                <div id="page-container">
-                    <BrowserRouter>
+                <BrowserRouter>
+                    <Navbar />
+
+                    <div id="page-container">
                         <Routes>
                             <Route path="/" element={<Landing />}></Route>
                             <Route path="*" element={<Error />}></Route>
                         </Routes>
-                    </BrowserRouter>
-                    <FancyDisplay theme={theme} />
-                </div>
+                    </div>
+                </BrowserRouter>
+                <FancyDisplay theme={theme} />
             </div>
         </div>
     );

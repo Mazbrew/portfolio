@@ -3,8 +3,6 @@
     height: 100%;
     position: relative;
     display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 #landing-page {
@@ -21,12 +19,17 @@
     box-sizing: border-box;
 }
 
+#landing-text {
+    width: max-content;
+    height: max-content;
+}
+
 #header {
     font-family: monospace;
-    font-size: 2.5em;
+    font-size: 2em;
 }
 
 .content {
     font-family: monospace;
-    font-size: 1.5em;
+    font-size: 1.25em;
 }

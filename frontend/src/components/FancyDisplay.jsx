@@ -69,7 +69,6 @@ function sketch(p5) {
         p5.rotateX(45);
         p5.rotateY(p5.frameCount * 0.5);
         p5.rotateZ(45);
-        console.log(points[1]);
 
         for (let i = 0; i < points.length; i++) {
             p5.point(
