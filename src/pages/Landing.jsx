@@ -14,27 +14,27 @@ function Landing() {
 						<br /> {age}
 						<br />
                         <br />GENDER: 
-						<br /> &#x2642; MALE
+						<br /> &#x2642; Male
 						<br />
 						<br />PREFFERED ROLE:
-						<br /> SOFTWARE ENGINEER
+						<br /> Software Engineer
 						<br />
 						<br />EDUCATION:
-						<br /> BSC COMPUTER SCIENCE WITH AI
+						<br /> BSC Computer Science with AI
 						<br />
 						<br />LANGUAGES:
-						<br /> ENGLISH       [5/5]
-						<br /> BAHASA MELAYU [4/5]
-						<br /> CANTONESE     [2/5]
-						<br /> CHINESE       [1/5]
-						<br /> JAPANESE      [1/5]
+						<br /> English       [5/5]
+						<br /> Bahasa Melayu [4/5]
+						<br /> Cantonese     [2/5]
+						<br /> Mandarin      [1/5]
+						<br /> Japanese      [1/5]
 						<br />
                         <br />HOBBIES:
-                        <br /> BREWING COFFEE
-                        <br /> MECHANICAL KEYBOARDS
-                        <br /> GAMING
-                        <br /> MANGA/ANIME
-						<br /> PROGRAMMING
+                        <br /> Brewing Coffee
+                        <br /> Mechanical Keyboards
+                        <br /> Gaming
+                        <br /> Manga/Anime
+						<br /> Programming
                     </pre>
                 </div>
             </div>
