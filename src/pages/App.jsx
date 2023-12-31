@@ -40,7 +40,7 @@ function App() {
                     <LightSwitch onClick={themeSwap} />
                 </div>
 
-                <BrowserRouter>
+                <BrowserRouter basename = "/portfolio">
                     <Navbar />
 
                     <div id="page-container">
