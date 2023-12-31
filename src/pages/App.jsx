@@ -40,7 +40,7 @@ function App() {
                     <LightSwitch onClick={themeSwap} />
                 </div>
 
-                <BrowserRouter basename={process.env.PUBLIC_URL}>
+                <BrowserRouter>
                     <Navbar />
 
                     <div id="page-container">
