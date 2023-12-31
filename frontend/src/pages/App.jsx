@@ -8,6 +8,7 @@ import "../styles/App.css";
 import "../styles/Themes.css";
 
 import Landing from "./Landing.jsx";
+import Projects from "./Projects.jsx";
 import Error from "./Error.jsx";
 
 import Navbar from "../components/Navbar.jsx";
@@ -44,6 +45,7 @@ function App() {
                     <div id="page-container">
                         <Routes>
                             <Route path="/" element={<Landing />}></Route>
+                            <Route path="/Projects" element={<Projects />}></Route>
                             <Route path="*" element={<Error />}></Route>
                         </Routes>
                     </div>
