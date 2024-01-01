@@ -8,7 +8,7 @@ function Landing() {
         <div id="landing-container">
             <div id="landing-page">
                 <div id="landing-text">
-                    <div id="header">PETER YEOH</div>
+                    <div id="header">PE-TER YEOH</div>
                     <pre className="content">
                         AGE: 
 						<br /> {age}
