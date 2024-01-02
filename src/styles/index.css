@@ -7,10 +7,16 @@
     -webkit-user-drag: none;
     -webkit-user-select: none;
     -ms-user-select: none;
-	-ms-overflow-style: none;
-	scrollbar-width: none; 
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
-*::-webkit-scrollbar { 
-    display: none;  /* Safari and Chrome */
+*::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+}
+
+html, body{
+	max-width: 100%;
+	min-height: 100%;
+	overflow: hidden;
 }
